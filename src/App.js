@@ -6,6 +6,7 @@ import './App.css';
 import Home from './Pages/Home'
 import SignIn from './Pages/SignIn'
 import SignUp from './Pages/SignUp'
+import Post from './Pages/Post'
 function App() {
   return (
     <Router className="App">
@@ -13,6 +14,7 @@ function App() {
       <Route exact path="/" exact component={Home} />
       <Route path="/sign-in/" component={SignIn} />
       <Route path="/sign-up/" component={SignUp} />
+      <Route path="/post/:id" component={Post} />
       <Redirect to="/"></Redirect>
       </Switch>
     </Router>
