@@ -53,9 +53,6 @@ class PostCard extends Component {
                         </CardContent>
                         <CardActions>
                             <Button size="small" color="primary">
-                                View
-                            </Button>
-                            <Button size="small" color="primary">
                                 Edit
                             </Button>
                         </CardActions>

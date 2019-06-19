@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -7,19 +7,24 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles, withStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import  { withRouter } from 'react-router-dom'
+
 //custom components
 import AppHeader from "../Components/header";
 import AppFooter from "../Components/footer";
 import PostCard from "../Components/post-card";
+import PostStore from "../Store/reducers/Posts";
+
+
 const CustomCard = withRouter(({post, history}) => (
     <PostCard data={post} history={history}>
 
     </PostCard>
 ));
-const useStyles = makeStyles(theme => ({
+
+const useStyles = theme => ({
     icon: {
         marginRight: theme.spacing(2)
     },
@@ -45,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     cardContent: {
         flexGrow: 1
     }
-}));
+});
 
 const cards = [
     {
@@ -79,51 +84,61 @@ const cards = [
         description: 'This is a media card. You can use this section to describe the content.'
     },
 ];
-
-export default function Album() {
-    const classes = useStyles();
-
-    return (
-        <React.Fragment>
-            <CssBaseline/>
-            <AppHeader/>
-            <main>
-                {/* Hero unit */}
-                <div className={classes.heroContent}>
-                    <Container maxWidth="sm">
-                        <Typography
-                            component="h1"
-                            variant="h2"
-                            align="center"
-                            color="textPrimary"
-                            gutterBottom
-                        >
-                            Album layout
-                        </Typography>
-                        <Typography
-                            variant="h5"
-                            align="center"
-                            color="textSecondary"
-                            paragraph
-                        >
-                            Something short and leading about the collection below—its
-                            contents, the creator, etc. Make it short and sweet, but not too
-                            short so folks don&apos;t simply skip over it entirely.
-                        </Typography>
-                    </Container>
-                </div>
-                <Container className={classes.cardGrid} maxWidth="md">
-                    {/* End hero unit */}
-                    <Grid container spacing={4}>
-                        {cards.map(card => (
-                            <Grid item key={card.id} xs={12} sm={6} md={4}>
-                                <CustomCard post={card}></CustomCard>
+export default withStyles(useStyles)(
+    class PostsList extends Component {
+        constructor(props) {
+            super(props);
+            console.log(props);
+        }
+        render() {
+            const { classes } = this.props;
+            const { Posts } = this.props.state;
+            return (
+                <React.Fragment>
+                    <CssBaseline/>
+                    <AppHeader/>
+                    <main>
+                        {/* Hero unit */}
+                        <div className={classes.heroContent}>
+                            <Container maxWidth="sm">
+                                <Typography
+                                    component="h1"
+                                    variant="h2"
+                                    align="center"
+                                    color="textPrimary"
+                                    gutterBottom
+                                >
+                                    Album layout
+                                </Typography>
+                                <Typography
+                                    variant="h5"
+                                    align="center"
+                                    color="textSecondary"
+                                    paragraph
+                                >
+                                    Something short and leading about the collection below—its
+                                    contents, the creator, etc. Make it short and sweet, but not too
+                                    short so folks don&apos;t simply skip over it entirely.
+                                </Typography>
+                            </Container>
+                        </div>
+                        <Container className={classes.cardGrid} maxWidth="md">
+                            {/* End hero unit */}
+                            <Grid container spacing={4}>
+                                {Posts.map(card => (
+                                    <Grid item key={card.id} xs={12} sm={6} md={4}>
+                                        <CustomCard post={card}></CustomCard>
+                                    </Grid>
+                                ))}
                             </Grid>
-                        ))}
-                    </Grid>
-                </Container>
-            </main>
-            <AppFooter/>
-        </React.Fragment>
-    );
-}
+                        </Container>
+                    </main>
+                    <AppFooter/>
+                </React.Fragment>
+            );
+        }
+
+
+    }
+)
+

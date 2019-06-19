@@ -6,8 +6,6 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
-import AppHeader from "../Components/header";
-import AppFooter from "../Components/footer";
 const useStyles = theme => ({
     card: {
         height: "100%",
