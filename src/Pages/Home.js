@@ -52,53 +52,33 @@ const useStyles = theme => ({
     }
 });
 
-const cards = [
-    {
-        id: '1',
-        title: 'Heading 1',
-        description: 'This is a media card. You can use this section to describe the content.'
-    },
-    {
-        id: '2',
-        title: 'Heading 2',
-        description: 'This is a media card. You can use this section to describe the content.'
-    },
-    {
-        id: '3',
-        title: 'Heading 3',
-        description: 'This is a media card. You can use this section to describe the content.'
-    },
-    {
-        id: '4',
-        title: 'Heading 4',
-        description: 'This is a media card. You can use this section to describe the content.'
-    },
-    {
-        id: '5',
-        title: 'Heading 5',
-        description: 'This is a media card. You can use this section to describe the content.'
-    },
-    {
-        id: '6',
-        title: 'Heading 6',
-        description: 'This is a media card. You can use this section to describe the content.'
-    },
-];
 export default withStyles(useStyles)(
     class PostsList extends Component {
         constructor(props) {
             super(props);
-            console.log(props);
+            this.state = {
+                post: {
+                    author_id: 1,
+                    author_name: "Admin 2",
+                    description: "Description 3",
+                    title: "Title 4"
+                }
+            };
+            this.addPost = this.addPost.bind(this);
+        }
+        addPost(){
+            this.props.createPost(this.state.post);
         }
         render() {
             const { classes } = this.props;
-            const { Posts } = this.props.state;
+            const { Posts } = this.props.home;
             return (
                 <React.Fragment>
                     <CssBaseline/>
                     <AppHeader/>
                     <main>
                         {/* Hero unit */}
+
                         <div className={classes.heroContent}>
                             <Container maxWidth="sm">
                                 <Typography
@@ -120,6 +100,9 @@ export default withStyles(useStyles)(
                                     contents, the creator, etc. Make it short and sweet, but not too
                                     short so folks don&apos;t simply skip over it entirely.
                                 </Typography>
+                                <Button onClick={this.addPost} variant="contained" className={classes.button}>
+                                    Add post
+                                </Button>
                             </Container>
                         </div>
                         <Container className={classes.cardGrid} maxWidth="md">

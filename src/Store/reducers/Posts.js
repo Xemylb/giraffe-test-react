@@ -11,21 +11,21 @@ const initialState = [
 ];
 
 export  default function postsList(state = initialState, action) {
-
+    const payload = action.payload;
     switch (action.type) {
         case 'ADD_POST':
             return  [
                 ...state,
                 {
-                    id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-                    title: action.title,
-                    description: action.description
+                    id: state.reduce((maxId, post) => Math.max(post.id, maxId), -1) + 1,
+                    title: payload.title,
+                    description: payload.description
                 }
             ];
         case 'EDIT_POST':
             return state.map(post =>
                 post.id === post.id ?
-                    { ...post, title: post.title, description: post.description } :
+                    { ...post, title: payload.title, description: payload.description } :
                     post
             );
         default:
