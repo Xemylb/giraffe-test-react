@@ -7,7 +7,14 @@ const initialState = [
         description: 'Description 1',
         author_name: 'Admin',
         author_id: 1
-    }
+    },
+    {
+        id: 2,
+        title: 'Title 1',
+        description: 'Description 1',
+        author_name: 'Admin',
+        author_id: 2
+    },
 ];
 
 export  default function postsList(state = initialState, action) {
@@ -22,12 +29,17 @@ export  default function postsList(state = initialState, action) {
                     description: payload.description
                 }
             ];
+
         case 'EDIT_POST':
             return state.map(post =>
                 post.id === post.id ?
                     { ...post, title: payload.title, description: payload.description } :
                     post
             );
+
+        case 'DELETE_POST':
+            return state.filter( post => post.id !== action.id );
+
         default:
             return state;
     }

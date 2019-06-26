@@ -6,10 +6,10 @@ const initialState = {
             name: 'Admin',
             email: 'admin@admin.com',
             password: 'password'
-        }
+        },
     ],
     currentUser: {
-        id: null,
+        id: 1,
         name: null,
         email: null,
     }

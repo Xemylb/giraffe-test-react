@@ -14,12 +14,11 @@ import  { withRouter } from 'react-router-dom'
 //custom components
 import AppHeader from "../Components/header";
 import AppFooter from "../Components/footer";
-import PostCard from "../Components/post-card";
-import PostStore from "../Store/reducers/Posts";
+import PostCard from "../Store/containers/Post-card";
 
 
-const CustomCard = withRouter(({post, history}) => (
-    <PostCard data={post} history={history}>
+const CustomCard = withRouter(({post, currentUserID, history}) => (
+    <PostCard data={post} currentUserID={currentUserID} history={history}>
 
     </PostCard>
 ));
@@ -55,7 +54,7 @@ const useStyles = theme => ({
 export default withStyles(useStyles)(
     class PostsList extends Component {
         constructor(props) {
-            super(props);
+            super(props);  
             this.state = {
                 post: {
                     author_id: 1,
@@ -72,6 +71,7 @@ export default withStyles(useStyles)(
         render() {
             const { classes } = this.props;
             const { Posts } = this.props.home;
+            const { currentUser } = this.props.home.Users;
             return (
                 <React.Fragment>
                     <CssBaseline/>
@@ -108,9 +108,9 @@ export default withStyles(useStyles)(
                         <Container className={classes.cardGrid} maxWidth="md">
                             {/* End hero unit */}
                             <Grid container spacing={4}>
-                                {Posts.map(card => (
+                                {Posts.map((card,index) => (
                                     <Grid item key={card.id} xs={12} sm={6} md={4}>
-                                        <CustomCard post={card}></CustomCard>
+                                        <CustomCard post={card} currentUserID={currentUser.id} ></CustomCard>
                                     </Grid>
                                 ))}
                             </Grid>
