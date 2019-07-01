@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
 import { addPost } from '../actions'
 
-import Post from '../../Pages/Post'
+import EditPost from '../../Pages/EditPost'
 
 const mapStateToProps = (state, ownProps) => ({
     redux: state,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    deletePost: (post) => {
+    createPost: (post) => {
         dispatch(addPost(post))
     }
 });
@@ -16,4 +16,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Post)
+)(EditPost)

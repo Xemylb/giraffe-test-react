@@ -27,10 +27,14 @@ class PostCard extends Component {
         super(props);
         this.goToPost = this.goToPost.bind(this);
         this.deletePost = this.deletePost.bind(this);
+        this.editPost = this.editPost.bind(this);
         this.isAuthor = this.isAuthor.bind(this);
     }
     goToPost() {
         this.props.history.push('/post/' + this.props.data.id)
+    }
+    editPost(){
+        this.props.history.push('/edit/' + this.props.data.id)
     }
     deletePost(id) {
         this.props.deletePost(id)
@@ -38,16 +42,16 @@ class PostCard extends Component {
     isAuthor() {
         if (this.props.data.id === this.props.currentUserID) {
             return <CardActions>
-                <Button onClick={this.goToPost} size="small" color="primary">
-                    View
-        </Button>
-                <Button size="small" color="primary">
-                    Edit
-        </Button>
-                <Button size="small" onClick={() => this.deletePost(this.props.data.id)} color="secondary" >
-                    Delete
-        </Button>
-            </CardActions>
+                    <Button onClick={this.goToPost} size="small" color="primary">
+                        View
+                    </Button>
+                    <Button onClick={()=>this.editPost()} size="small" color="primary">
+                        Edit
+                    </Button>
+                    <Button size="small" onClick={() => this.deletePost(this.props.data.id)} color="secondary" >
+                        Delete
+                    </Button>
+                </CardActions>
         }
     }
     render() {

@@ -110,7 +110,7 @@ export default withStyles(useStyles)(
                             <Grid container spacing={4}>
                                 {Posts.map((card,index) => (
                                     <Grid item key={card.id} xs={12} sm={6} md={4}>
-                                        <CustomCard post={card} currentUserID={currentUser.id} ></CustomCard>
+                                        <CustomCard post={card} currentUserID={currentUser.id} />
                                     </Grid>
                                 ))}
                             </Grid>

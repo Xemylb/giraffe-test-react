@@ -31,9 +31,19 @@ class PostCard extends Component {
     constructor(props) {
         super(props);
     }
-
+    getPost(id, postsList){
+            let post = {};
+            postsList.find((item)=>{
+                if(item.id === Number(id)){
+                    post = item
+                }
+            })
+            return post;
+    }
     render() {
+        console.log(this.props)
         const {classes} = this.props;
+        const post = this.getPost(this.props.match.params.id,this.props.redux.Posts);
         return (
             <div>
                 <AppHeader></AppHeader>
@@ -45,10 +55,10 @@ class PostCard extends Component {
                         />
                         <CardContent className={classes.cardContent}>
                             <Typography gutterBottom variant="h5" component="h2">
-                                TITLE
+                                {post.title}
                             </Typography>
                             <Typography>
-                                Description
+                                {post.description}
                             </Typography>
                         </CardContent>
                         <CardActions>
