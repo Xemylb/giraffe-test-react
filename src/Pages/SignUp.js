@@ -49,9 +49,7 @@ export default withStyles(useStyles)(
         email: "",
         password: ""
       };
-      this.handleNameChange = this.handleNameChange.bind(this);
-      this.handleEmailChange = this.handleEmailChange.bind(this);
-      this.handlePasswordChange = this.handlePasswordChange.bind(this);
+      this.handleOnChange = this.handleOnChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(event) {
@@ -59,20 +57,10 @@ export default withStyles(useStyles)(
 
       console.log(this.state);
     }
-    handleNameChange(event) {
+    handleOnChange(event){
       this.setState({
-        name: event.target.value
-      });
-    }
-    handleEmailChange(event) {
-      this.setState({
-        email: event.target.value
-      });
-    }
-    handlePasswordChange(event) {
-      this.setState({
-        password: event.target.value
-      });
+        [event.target.id]: event.target.value
+      })
     }
     render() {
       const { classes } = this.props;
@@ -100,8 +88,8 @@ export default withStyles(useStyles)(
                     required
                     fullWidth
                     value={this.state.name}
-                    onChange={this.handleNameChange}
-                    id="firstName"
+                    onChange={this.handleOnChange}
+                    id="name"
                     label="Name"
                     autoFocus
                   />
@@ -115,7 +103,7 @@ export default withStyles(useStyles)(
                     label="Email Address"
                     name="email"
                     value={this.state.email}
-                    onChange={this.handleEmailChange}
+                    onChange={this.handleOnChange}
                     autoComplete="email"
                   />
                 </Grid>
@@ -129,7 +117,7 @@ export default withStyles(useStyles)(
                     type="password"
                     id="password"
                     value={this.state.password}
-                    onChange={this.handlePasswordChange}
+                    onChange={this.handleOnChange}
                     autoComplete="current-password"
                   />
                 </Grid>
