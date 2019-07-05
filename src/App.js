@@ -7,10 +7,10 @@ import './App.css';
 
 // Pages
 import Home from './Store/containers/Home'
-import SignIn from './Pages/SignIn'
+import SignIn from './Store/containers/SignIn'
 import SignUp from './Pages/SignUp'
 import Post from "./Store/containers/Post";
-import PostForm from "./Store/containers/EditPost";
+import PostForm from "./Store/containers/CreatePost";
 
 //STORE
 
@@ -25,10 +25,11 @@ function App() {
           <Router className="App">
               <Switch>
                   <Route exact path="/" exact component={Home} />
-                  <Route path="/sign-in/" component={SignIn} />
-                  <Route path="/sign-up/" component={SignUp} />
+                  <Route path="/login" name="login" component={SignIn} />
+                  <Route path="/sign-up" component={SignUp} />
                   <Route path="/post/:id" component={Post} />
-                  <Route path="/edit/:id" component={PostForm} />
+                  {/* <Route path="/edit/:id" component={PostForm} /> */}
+                  <Route path="/create" component={PostForm} />
                   <Redirect to="/"></Redirect>
               </Switch>
           </Router>

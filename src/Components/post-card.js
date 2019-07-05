@@ -40,7 +40,7 @@ class PostCard extends Component {
         this.props.deletePost(id)
     }
     isAuthor() {
-        if (this.props.data.id === this.props.currentUserID) {
+        if (this.props.data.author_id === this.props.currentUserID) {
             return <CardActions>
                     <Button onClick={this.goToPost} size="small" color="primary">
                         View

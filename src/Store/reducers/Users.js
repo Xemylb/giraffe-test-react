@@ -8,8 +8,9 @@ const initialState = {
             password: 'password'
         },
     ],
+    isAuth: false,
     currentUser: {
-        id: 1,
+        id: null,
         name: null,
         email: null,
     }
@@ -24,8 +25,9 @@ export  default function postsList(state = initialState, action) {
                     ...state.usersList,
                     {
                         id: state.reduce((maxId, user) => Math.max(user.id, maxId), -1) + 1,
-                        title: action.title,
-                        description: action.description
+                        name: action.name,
+                        email: action.email,
+                        password: action.password
                     }
                 ]
             };

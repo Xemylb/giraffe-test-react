@@ -16,6 +16,7 @@ import AppHeader from "../Components/header";
 import AppFooter from "../Components/footer";
 import PostCard from "../Store/containers/Post-card";
 
+import dateHelper from '../helpers/date';
 
 const CustomCard = withRouter(({post, currentUserID, history}) => (
     <PostCard data={post} currentUserID={currentUserID} history={history}>
@@ -55,23 +56,30 @@ export default withStyles(useStyles)(
     class PostsList extends Component {
         constructor(props) {
             super(props);  
+            
             this.state = {
                 post: {
                     author_id: 1,
                     author_name: "Admin 2",
                     description: "Description 3",
-                    title: "Title 4"
+                    title: "Title 4",
+                    date: dateHelper.getDate()
                 }
             };
             this.addPost = this.addPost.bind(this);
+            this.routePush = this.routePush.bind(this);
         }
         addPost(){
             this.props.createPost(this.state.post);
+        }
+        routePush(path){
+            this.props.history.push(path)
         }
         render() {
             const { classes } = this.props;
             const { Posts } = this.props.home;
             const { currentUser } = this.props.home.Users;
+            const { history } = this.props.history;
             return (
                 <React.Fragment>
                     <CssBaseline/>
@@ -100,8 +108,8 @@ export default withStyles(useStyles)(
                                     contents, the creator, etc. Make it short and sweet, but not too
                                     short so folks don&apos;t simply skip over it entirely.
                                 </Typography>
-                                <Button onClick={this.addPost} variant="contained" className={classes.button}>
-                                    Add post
+                                <Button fullWidth onClick={() => this.routePush('/create')} variant="contained" className={classes.button}>
+                                    Create post
                                 </Button>
                             </Container>
                         </div>

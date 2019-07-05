@@ -6,14 +6,16 @@ const initialState = [
         title: 'Title 1',
         description: 'Description 1',
         author_name: 'Admin',
-        author_id: 1
+        author_id: 1,
+        date: ''
     },
     {
         id: 2,
         title: 'Title 1',
         description: 'Description 1',
         author_name: 'Admin',
-        author_id: 2
+        author_id: 2,
+        date: ''
     },
 ];
 
@@ -26,8 +28,11 @@ export  default function postsList(state = initialState, action) {
                 {
                     id: state.reduce((maxId, post) => Math.max(post.id, maxId), -1) + 1,
                     title: payload.title,
-                    description: payload.description
-                }
+                    author_id: payload.author_id,
+                    author_name: payload.author_name,
+                    description: payload.description,
+                    date: payload.date
+                }  
             ];
 
         case 'EDIT_POST':
