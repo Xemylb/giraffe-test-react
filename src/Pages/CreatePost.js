@@ -10,6 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import Container from "@material-ui/core/Container";
 import { Link as RouterLink } from 'react-router-dom';
 
+//custom
+import AppHeader from "../Store/containers/Header";
+
 //Helpers
 import dateHelper from '../helpers/date'
 
@@ -70,7 +73,9 @@ export default withStyles(useStyles)(
   render () {
     const { classes } = this.props;
     return (
-      <Container component="main" maxWidth="xs">
+      <React.Fragment>
+        <AppHeader/>
+        <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
           <Typography variant="h4">
@@ -114,6 +119,8 @@ export default withStyles(useStyles)(
           </form>
         </div>
       </Container>
+      </React.Fragment>
+      
     );
   }
 }

@@ -12,7 +12,7 @@ import Container from "@material-ui/core/Container";
 import  { withRouter } from 'react-router-dom'
 
 //custom components
-import AppHeader from "../Components/header";
+import AppHeader from "../Store/containers/Header";
 import AppFooter from "../Components/footer";
 import PostCard from "../Store/containers/Post-card";
 

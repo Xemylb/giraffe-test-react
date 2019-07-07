@@ -7,7 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import AppHeader from "../Components/header";
+import AppHeader from "../Store/containers/Header";
 import AppFooter from "../Components/footer";
 const useStyles = theme => ({
     cardGrid: {
