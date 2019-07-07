@@ -38,6 +38,7 @@ export  default function postsList(state = initialState, action) {
                 usersList: [
                     ...state.usersList,
                 ],
+                isAuth: true,
                 currentUser: {
                     id: payload.id,
                     name: payload.name,
@@ -49,6 +50,7 @@ export  default function postsList(state = initialState, action) {
                 usersList: [
                     ...state.usersList,
                 ],
+                isAuth: false,
                 currentUser: {
                     id: null,
                     name: null,

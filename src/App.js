@@ -12,11 +12,14 @@ import SignUp from './Store/containers/SignUp'
 import Post from "./Store/containers/Post";
 import PostForm from "./Store/containers/CreatePost";
 
+//Router
+
+import PrivateRoute from './Store/containers/PrivateRoute'
+
 //STORE
 
 
 const store = createStore(reducer);
-
 
 
 function App() {
@@ -24,12 +27,12 @@ function App() {
       <Provider store={store}>
           <Router className="App">
               <Switch>
-                  <Route exact path="/" exact component={Home} />
+                  <Route exact path="/" component={Home} />
                   <Route path="/login" name="login" component={SignIn} />
                   <Route path="/sign-up" name="signUp" component={SignUp} />
                   <Route path="/post/:id" component={Post} />
                   {/* <Route path="/edit/:id" component={PostForm} /> */}
-                  <Route path="/create" component={PostForm} />
+                  <PrivateRoute path="/create" component={PostForm} />
                   <Redirect to="/"></Redirect>
               </Switch>
           </Router>
