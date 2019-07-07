@@ -17,17 +17,19 @@ const initialState = {
 };
 
 export  default function postsList(state = initialState, action) {
-    console.log(action);
+
+    const {payload} = action;
+
     switch (action.type) {
         case 'ADD_USER':
             return  {
                 usersList: [
                     ...state.usersList,
                     {
-                        id: state.reduce((maxId, user) => Math.max(user.id, maxId), -1) + 1,
-                        name: action.name,
-                        email: action.email,
-                        password: action.password
+                        id: state.usersList.reduce((maxId, user) => Math.max(user.id, maxId), -1) + 1,
+                        name: payload.name,
+                        email: payload.email,
+                        password: payload.password
                     }
                 ]
             };
@@ -37,9 +39,9 @@ export  default function postsList(state = initialState, action) {
                     ...state.usersList,
                 ],
                 currentUser: {
-                    id: action.id,
-                    name: action.name,
-                    email: action.email,
+                    id: payload.id,
+                    name: payload.name,
+                    email: payload.email,
                 }
             };
         case 'LOGOUT':

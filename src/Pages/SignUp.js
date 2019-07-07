@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -54,14 +54,36 @@ export default withStyles(useStyles)(
     }
     handleSubmit(event) {
       event.preventDefault();
+      const newUser = this.state;
+      const { users } = this.props;
+      const { addUser } = this.props;
+      const { history } = this.props;
 
-      console.log(this.state);
+      if (!newUser.email || !newUser.name || !newUser.password) {
+        alert("All fields are required!");
+        return;
+      }
+
+      const index = users.findIndex(user => user.email === newUser.email);
+      console.log(index)
+      switch (index) {
+        case -1:
+          addUser(newUser);
+          history.push("/login");
+          break;
+        
+        default:
+            alert("Email already taken");
+          break;
+      }
     }
-    handleOnChange(event){
+
+    handleOnChange(event) {
       this.setState({
         [event.target.id]: event.target.value
-      })
+      });
     }
+
     render() {
       const { classes } = this.props;
       return (
@@ -141,9 +163,9 @@ export default withStyles(useStyles)(
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>
-                <RouterLink to="/sign-in">
-                      {"Don't have an account? Sign Up"}
-                    </RouterLink>
+                  <RouterLink to="/sign-in">
+                    {"Don't have an account? Sign Up"}
+                  </RouterLink>
                 </Grid>
               </Grid>
             </form>

@@ -8,7 +8,7 @@ import './App.css';
 // Pages
 import Home from './Store/containers/Home'
 import SignIn from './Store/containers/SignIn'
-import SignUp from './Pages/SignUp'
+import SignUp from './Store/containers/SignUp'
 import Post from "./Store/containers/Post";
 import PostForm from "./Store/containers/CreatePost";
 
@@ -26,7 +26,7 @@ function App() {
               <Switch>
                   <Route exact path="/" exact component={Home} />
                   <Route path="/login" name="login" component={SignIn} />
-                  <Route path="/sign-up" component={SignUp} />
+                  <Route path="/sign-up" name="signUp" component={SignUp} />
                   <Route path="/post/:id" component={Post} />
                   {/* <Route path="/edit/:id" component={PostForm} /> */}
                   <Route path="/create" component={PostForm} />
